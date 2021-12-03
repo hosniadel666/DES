@@ -3,17 +3,14 @@
 
 namespace asu
 {
-    class util{
-        public:
-            util();
-            std::string convert_h2b(std::string s);
-            std::string convert_b2h(std::string s);
-            std::string permute(std::string k, int* arr, int n);
-            std::string shift_left(std::string k, int shifts);
-            std::string xoring(std::string a, std::string b);
-
-    };
+  class util
+  {
+  public:
+    util();
+    std::string to_upper(std::string str);
+    uint64_t str_to_u64(std::string data);
+    std::string u64_to_str(uint64_t data);
+  };
 }
-
 
 #endif
