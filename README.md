@@ -13,20 +13,26 @@
   <br>
   
   ```
-  cd out/build
-  make
+  cd out/build && make
   ```
 
   > Executable file main.out will be generated
 
 - Run the code:
-
+  - For encrypt data
+  <br>
+  
   ```
   ./main.out encrypt <data> <key>
+  ```
+  - For decrypt data
+  <br>
+  
+  ```
   ./main.out decrypt <data> <key>
   ```
 
-  - Example:
-  <p align="center">
-    <img src="res/demo-with-cpu-cycles.png">
-  </p>
+- Example:
+<p align="center">
+  <img src="res/demo-with-cpu-cycles.png">
+</p>
