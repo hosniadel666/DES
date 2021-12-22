@@ -9,7 +9,6 @@ asu::des::des(uint64_t key)
   /* initial key schedule calculation */
   for (i = 0; i < 56; i++)
   {
-
     permuted_choice_1 <<= 1;
     permuted_choice_1 |= (key >> (64 - PC1[i])) & LB64_MASK;
   }
@@ -20,12 +19,10 @@ asu::des::des(uint64_t key)
   /* Calculation of the 16 keys */
   for (i = 0; i < 16; i++)
   {
-
     /* key schedule */
     // shifting Ci and Di
     for (j = 0; j < iteration_shift[i]; j++)
     {
-
       C = 0x0fffffff & (C << 1) | 0x00000001 & (C >> 27);
       D = 0x0fffffff & (D << 1) | 0x00000001 & (D >> 27);
     }
@@ -45,11 +42,9 @@ asu::des::des(uint64_t key)
 
 uint64_t asu::des::encrypt(uint64_t input)
 {
-
   /* initial permutation */
   for (i = 0; i < 64; i++)
   {
-
     init_perm_res <<= 1;
     init_perm_res |= (input >> (64 - IP[i])) & LB64_MASK;
   }
@@ -58,19 +53,17 @@ uint64_t asu::des::encrypt(uint64_t input)
 
   for (i = 0; i < 16; i++)
   {
-
     /* f(R,k) function */
     s_input = 0;
 
     for (j = 0; j < 48; j++)
     {
-
       s_input <<= 1;
       s_input |= (uint64_t)((R >> (32 - E[j])) & LB32_MASK);
     }
 
-    /* 
-         * Encryption/Decryption 
+    /*
+         * Encryption/Decryption
          * XORing expanded Ri with Ki
          */
 
@@ -96,7 +89,6 @@ uint64_t asu::des::encrypt(uint64_t input)
 
     for (j = 0; j < 32; j++)
     {
-
       f_function_res <<= 1;
       f_function_res |= (s_output >> (32 - P[j])) & LB32_MASK;
     }
@@ -110,7 +102,6 @@ uint64_t asu::des::encrypt(uint64_t input)
 
   for (int i = 0; i < 64; i++)
   {
-
     inv_init_perm_res <<= 1;
     inv_init_perm_res |= (pre_output >> (64 - PI[i])) & LB64_MASK;
   }
@@ -120,11 +111,9 @@ uint64_t asu::des::encrypt(uint64_t input)
 
 uint64_t asu::des::decrypt(uint64_t input)
 {
-
   /* initial permutation */
   for (i = 0; i < 64; i++)
   {
-
     init_perm_res <<= 1;
     init_perm_res |= (input >> (64 - IP[i])) & LB64_MASK;
   }
@@ -134,19 +123,17 @@ uint64_t asu::des::decrypt(uint64_t input)
 
   for (i = 0; i < 16; i++)
   {
-
     /* f(R,k) function */
     s_input = 0;
 
     for (j = 0; j < 48; j++)
     {
-
       s_input <<= 1;
       s_input |= (uint64_t)((R >> (32 - E[j])) & LB32_MASK);
     }
 
-    /* 
-         * Encryption/Decryption 
+    /*
+         * Encryption/Decryption
          * XORing expanded Ri with Ki
          */
 
@@ -172,7 +159,6 @@ uint64_t asu::des::decrypt(uint64_t input)
 
     for (j = 0; j < 32; j++)
     {
-
       f_function_res <<= 1;
       f_function_res |= (s_output >> (32 - P[j])) & LB32_MASK;
     }
@@ -186,7 +172,6 @@ uint64_t asu::des::decrypt(uint64_t input)
 
   for (int i = 0; i < 64; i++)
   {
-
     inv_init_perm_res <<= 1;
     inv_init_perm_res |= (pre_output >> (64 - PI[i])) & LB64_MASK;
   }
